@@ -8,6 +8,7 @@ template <typename datatype> struct node{
     ~node();
     node(datatype data);
     void set(datatype data);
+    datatype get();
 };
 
 template <typename datatype> class stack {
