@@ -9,6 +9,7 @@ class User {
 private:
   std::string userName;
   std::string passWord;
+  node<Topic *> topicList;
 
 protected:
   ~User();
@@ -21,7 +22,7 @@ protected:
 
 class Project {
 private:
-  std::string folderName; // housing boost to access this folder via xml file
+  std::string folderName; // using boost to access this folder via xml file
   std::string sourceCode;
   std::string result;
   float score;
@@ -38,15 +39,15 @@ public:
 
 class Lecturer : public User {
 private:
-  node<Topic *> topicList;
 
 public:
-  void GoTopic(std::string topicName);
+  Lecturer(std::string name, std::string pass) : User(name, pass);
+  void CreateTopic(std::string topicName);
+  Topic* GoTopic(std::string topicName);
 };
 
 class Student : public User {
 private:
-  node<Topic *> topicList;
 
 public:
   void GoTopic(std::string topicName);
@@ -74,12 +75,13 @@ private:
   Attendant *attendantList; // student who attends
 public:
   Topic(std::string name);
-  ¬Topic();
+  ~Topic();
+  std::string GetName();
   void
   SetProject(Project *myStandard); // add ONE project for comparing, ny lecturer
-  void viewList();                 // see all the attendant
-  void attend(std::string me);     // make new
-  void enter(std::string me);      // enter available
+  void ViewList();                 // see all the attendant
+  void Attend(std::string me);     // make new
+  void Enter(std::string me);      // enter available
 };
 
 #endif // HEADER_H

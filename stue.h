@@ -4,9 +4,9 @@
 template <typename datatype> struct node{
     datatype data;
     node<datatype>* next;
-    node();
+    node<datatype>();
     ~node();
-    node(datatype data);
+    node<datatype>(datatype data);
     void set(datatype data);
     datatype get();
 };

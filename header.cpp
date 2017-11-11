@@ -7,6 +7,7 @@
 User::User(std::string yourName, std::string yourPass) {
     this->userName = yourName;
     this->passWord = yourPass;
+    topicList = NULL;
 }
 void User::SetName(std::string yourName) {
     this->userName = yourName;
@@ -40,4 +41,34 @@ std::string Project::GetCode() {
 }
 std::string Project::GetResult() {
     return this->result;
+}
+
+///
+/// LECTURER CLASS
+///
+void Lecturer::CreateTopic(std::string topicName) {
+    Topic *latest = new Topic(topicName);
+    node<Topic* > temp = new node<Topic *>(*latest);
+
+    if (!this->topicList) topicList = temp;
+    else {
+        node<Topic* > temp1 = topicList;
+        while (temp1->next)
+            temp1 = temp1->next;
+        temp1->next = temp;
+    }
+}
+Topic* Lecturer::GoTopic(std::string topicName) {
+    Topic *search = new Topic(topicName);
+    node<Topic* > temp = new node<Topic *>(*search);
+
+    if (!this->topicList) topicList = temp;
+    else {
+        node<Topic* > temp1 = topicList;
+        while (temp1) {
+            if (temp1->get()->GetName() == topicName) return &(temp1->get());
+            temp1 = temp1->next;
+        }
+        return NULL;
+    }
 }
