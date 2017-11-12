@@ -32,12 +32,14 @@ void debug_settings::load(const std::string &filename) {
   // Use get_child to find the node containing the modules, and iterate over
   // its children. If the path cannot be resolved, get_child throws.
   // A C++11 for-range loop would also work.
-  BOOST_FOREACH (pt::ptree::value_type &v, tree.get_child("debug.modules")) {
-    // The data function is used to access the data stored in a node.
-    m_modules.insert(v.second.data());
+  BOOST_FOREACH (pt::ptree::value_type &v, tree.get_child("<xmlattr>.id")) {
+
+      // The data function is used to access the data stored in a node.
+      m_modules.insert(v.second.data());
+
   }
 }
-void debug_settings::save(const std::string &filename) {
+void debug_settings::save(const std::string &name) {
   // Create an empty property tree object.
   pt::ptree tree;
 
@@ -54,14 +56,14 @@ void debug_settings::save(const std::string &filename) {
     tree.add("debug.modules.module", name);
 
   // Write property tree to XML file
-  pt::write_xml(filename, tree);
+  pt::write_xml(name, tree);
 }
 
 int main(int argc, char **argv) {
   debug_settings myTree;
   myTree.load("user.xml");
 
-  std::set<std::string>:: iterator id;
+  std::set<std::string>::iterator id;
   for (id = myTree.m_modules.begin(); id != myTree.m_modules.end(); ++id) {
     std::string my = *id;
     std::cout << my << std::endl;

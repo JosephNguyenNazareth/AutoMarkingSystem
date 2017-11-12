@@ -1,10 +1,24 @@
 <debug>
     <filename>debug.log</filename>
-    <modules>
+    <modules id="1">
         <module>Finance</module>
         <module>Gdmin</module>
         <module>HR</module>
         <module>oR</module>
+    </modules>
+    <filename>debug1.log</filename>
+    <modules id="2">
+        <module>Finance1</module>
+        <module>Gdmin1</module>
+        <module>HR1</module>
+        <module>oR1</module>
+    </modules>
+    <filename>debug2.log</filename>
+    <modules id="3">
+        <module>Finance2</module>
+        <module>Gdmin2</module>
+        <module>HR2</module>
+        <module>oR2</module>
     </modules>
     <level>2</level>
 </debug>
